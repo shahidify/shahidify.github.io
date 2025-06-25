@@ -1,0 +1,77 @@
+---
+interface Project {
+    name: string;
+    description: string;
+    link: {
+        url?: string;
+        target?: string;
+        title?: string;
+        buttonLabel?: string;
+    };
+};
+
+const projects: Project[] = [{
+    name: 'DX NetOps',
+    description: 'DX NetOps delivers industry-recognized root cause analysis and large-scale assurance; along with intelligent triage workflows that enable effective and efficient management of complex, multi-vendor, traditional and software-defined networks. In a single NOC portal, DX NetOps converts inventory, topology, performance, fault, flows, device configurations, log data and user experience metrics into actionable insights for fast and easy troubleshooting.',
+    link: {
+        url: 'https://www.broadcom.com/products/software/network-management/netops#overview',
+    }
+}, {
+    name: 'DX Operational Intelligence',
+    description: 'DX Operational Intelligence is an AIOps platform designed to help teams contend with the explosive growth in monitoring data, infrastructure complexity, and business demands. Using artificial intelligence and machine learning, the platform normalizes, correlates, and analyzes the increasing volume and variety of operational data.',
+    link: {
+        url: 'https://www.broadcom.com/products/software/aiops-observability/operational-intelligence#overview'
+    }
+}, {
+    name: 'PAM Threat Analytics',
+    description: 'Symantec Threat Analytics integrates with Privileged Access Manager to evaluate the risk of privileged user activity to detect and mitigate threats from suspicious activity. Evaluation factors include the location of a privileged user, time and duration of activity, the system connections, and user history for security.',
+    link: {
+        url: 'https://www.youtube.com/watch?v=jftSkjOQ2ug&list=PL2eggx_qRWrR0KcO_GVD7hKfv_u4GIpSU&index=4'
+    }
+}];
+---
+
+<div>
+
+    <!-- <h2 class="text-2xl font-bold text-white mb-4">Latest Projects</h2> -->
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        {projects.map(project =>
+
+            <div class="flex flex-col justify-center items-start border border-gray-700 rounded-lg p-4 bg-black">
+
+                <h3 class="text-xl font-semibold text-white mb-2">
+                    {project.name}
+                </h3>
+
+                <p class="text-gray-400">
+                    {project.description}
+                </p>
+
+                {
+                    project.link?.url ?
+                        <a
+                            href={project.link.url}
+                            title={project.link.title || project.name}
+                            target={project.link.target || '_blank'}
+                            class="
+                                w-full px-4 py-2.5 mt-4 text-center
+
+                                border border-gray-600 rounded-lg
+
+                                hover:text-primary
+                                hover:border-primary
+                            ">
+                            {project.link.buttonLabel || 'Open Project Website'}
+                        </a>
+                    : null
+                }
+
+            </div>
+
+        )}
+
+    </div>
+
+</div>

@@ -1,0 +1,120 @@
+---
+import { Code } from 'astro:components';
+
+const code = `interface Developer {
+    name: string;
+    skills: string[];
+    interests: string[];
+};
+
+interface TechStack {
+   frontend: string[];
+    backend: string[];
+    devOps: string[];
+    others: string[];
+};
+
+type ContactType = 'github' | 'linkedIn' | 'email';
+
+const techStack: TechStack = {
+    frontend: [
+        'JavaScript',
+        'React',
+        'TypeScript',
+        'Redux',
+        'Next.js',
+        'Material-UI',
+        'TailwindCSS',
+        'Data Visualization',
+        'HighCharts',
+        'Zustand',
+        'Zustand',
+        'Vue.js',
+        'Jest',
+        'Playwright',
+        'Cypress',
+    ],
+    backend: [
+        'Node.js',
+        'Supabase',
+        'MySQL',
+        'Java'
+    ],
+    devOps: [
+        'GitHub',
+        'Docker',
+        'Jenkins',
+        'GCP',
+    ],
+    others: [
+        'Tech Leadership',
+        'Agile',
+        'Mentoring'
+    ]
+};
+
+// Developer profile
+const me: Developer = {
+    name: 'Shahid Khan.',
+    skills: [
+        ...techStack.frontend,
+        ...techStack.backend,
+        ...techStack.devOps,
+        ...techStack.others,
+    ],
+    interests: [
+        'Network Observability',
+        'AI',
+        'Security',
+        'Privacy',
+        'Performance',
+    ]
+};
+
+// Contact function
+const contact = (type: ContactType): string => {
+    switch (type) {
+        case 'github':
+            return 'https://github.com/shahidify';
+        case 'linkedIn':
+            return 'https://www.linkedin.com/in/mohammed-shahid-khan/';
+        case 'email':
+            return 'shahidify@gmail.com';
+        default:
+            return 'Send fax.';
+    }
+};
+
+`;
+---
+
+<Code
+    code={code}
+    lang="js"
+    wrap={true}
+/>
+
+<style is:global>
+
+    /* Custom styling for code block line numbers */
+    pre.astro-code {
+        @apply bg-transparent !important;
+    }
+
+    pre.astro-code code {
+        @apply block;
+        counter-reset: step;
+        counter-increment: step 0;
+    }
+
+    pre.astro-code code .line {
+        @apply relative;
+    }
+
+    pre.astro-code code .line::before {
+        content: counter(step);
+        counter-increment: step;
+        @apply text-gray-600 pr-2;
+    }
+
+</style>
